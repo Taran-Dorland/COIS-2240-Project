@@ -7,7 +7,7 @@ public class Test {
 	}
 //the bats uml diagram is the best
 	
-	//test comment
+	//test comment for dev branch
 
 // yo batz was here 
 }
