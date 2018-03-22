@@ -1,4 +1,12 @@
 package application;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -8,7 +16,7 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application{
-	
+
 	//Making sure I can push from this project
 	public static void main(String[] args) {
 		launch(args);
@@ -28,18 +36,56 @@ public class Main extends Application{
 			primaryStage.setScene(scene);
 			// scene displays when running
 			primaryStage.show();
-			} catch(Exception e) {
+			
+		} catch(Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	
+	//This method is never called, just pasted it here for future reference when
+	//calling from database
+	public void PrintFromDataBase() {
+		
+		//-----------------------------------------------------------------
+		Connection c = null;
+		Statement stmt = null;
+		try {
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:testdb.db");
+			c.setAutoCommit(false);
+			System.out.println("Opened database successfully");
 
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery( "SELECT * FROM CUSTOMER;" );
 
+			while ( rs.next() ) {
+				int id = rs.getInt("id");
+				String  firstName = rs.getString("firstName");
+				String  lastName = rs.getString("lastName");
+				int phoneNumber = rs.getInt("phoneNumber");
+				String email = rs.getString("email");
+				String  address = rs.getString("address");
 
+				System.out.println( "ID = " + id );
+				System.out.println( "FIRST_NAME = " + firstName);
+				System.out.println( "LAST_NAME = " + lastName);
+				System.out.println( "PHONE_NUMBER = " + phoneNumber);
+				System.out.println( "EMAIL = " + email);
+				System.out.println( "ADDRESS = " + address);
+				System.out.println();
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+		} catch ( Exception e ) {
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+		System.out.println("Operation done successfully");
 
+		//-----------------------------------------------------------------
+		
 	}
 
-
-
-
-	}
 }
-
-
