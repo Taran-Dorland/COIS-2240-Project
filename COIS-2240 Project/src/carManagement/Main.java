@@ -9,35 +9,36 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application{
-
-	//Main
+	Button button;
 	public static void main(String[] args) {
 		launch(args);
 	}
 
-	//Starting opening screen of the GUI
-	@Override
 	public void start(Stage primaryStage) {
 		try {
-
+			// setting the title of the for the application window
 			primaryStage.setTitle("N.B.T.K Auto S MRUN ");
-
-			//Load fxml
+			// utilizing scene builder stack pane so application has exit max and close
 			StackPane root = (StackPane)FXMLLoader.load(getClass().getResource("runw.fxml"));
-
-			//Create new scene
-			Scene scene = new Scene(root, 450, 400);
-
-			//Load css
+			// setting the size of the window
+			Scene scene = new Scene(root,800,800);
+			// using the style sheets and the css sheet for design
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-			//Setup/load scene
+			// setting the scene to start
 			primaryStage.setScene(scene);
+			// scene displays when running
 			primaryStage.show();
-
-		} catch(Exception e) {
+			} catch(Exception e) {
 			e.printStackTrace();
-		}
+
+
+
+
+	}
+
+
+
+
 	}
 }
 

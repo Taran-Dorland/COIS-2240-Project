@@ -8,7 +8,8 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application{
-	Button button;
+	
+	//Making sure I can push from this project
 	public static void main(String[] args) {
 		launch(args);
 	}
