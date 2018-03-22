@@ -21,7 +21,7 @@ public class Main extends Application{
 			// utilizing scene builder stack pane so application has exit max and close
 			StackPane root = (StackPane)FXMLLoader.load(getClass().getResource("runw.fxml"));
 			// setting the size of the window
-			Scene scene = new Scene(root,800,800);
+			Scene scene = new Scene(root, 1280, 720);
 			// using the style sheets and the css sheet for design
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			// setting the scene to start
