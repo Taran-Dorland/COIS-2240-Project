@@ -33,6 +33,15 @@ public void sales(ActionEvent e){
 	        stage.setScene(scene);
 	        
 	        stage.show();
+	        
+	        Customer testCust = new Customer();
+	        
+	        testCust.setCustID(5);
+	        
+	        System.out.println("First name: " + testCust.getFirstName());
+	        
+	        testCust.addToDatabase(4, "testName", "testLastName", 123456789, "testemail@email.com", "123 Test Street");
+	        
 	    } catch(Exception e1) {
 			System.out.println(e1.getMessage());
 
