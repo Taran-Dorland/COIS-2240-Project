@@ -29,24 +29,24 @@ public class Main extends Application{
 			// utilizing scene builder stack pane so application has exit max and close
 			StackPane root = (StackPane)FXMLLoader.load(getClass().getResource("runw.fxml"));
 			// setting the size of the window
-			Scene scene = new Scene(root, 1280, 720);
+			Scene scene = new Scene(root, 800, 800);
 			// using the style sheets and the css sheet for design
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			// setting the scene to start
 			primaryStage.setScene(scene);
 			// scene displays when running
 			primaryStage.show();
-			
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	//This method is never called, just pasted it here for future reference when
 	//calling from database
 	public void PrintFromDataBase() {
-		
+
 		//-----------------------------------------------------------------
 		Connection c = null;
 		Statement stmt = null;
@@ -85,7 +85,7 @@ public class Main extends Application{
 		System.out.println("Operation done successfully");
 
 		//-----------------------------------------------------------------
-		
+
 	}
 
 }

@@ -1,12 +1,14 @@
 package application;
 
 import javafx.event.ActionEvent;
+
 //import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 public class RunWindow {
 
 	@FXML
@@ -26,14 +28,18 @@ public void sales(ActionEvent e){
 	         */
 	        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
 	        Stage stage = new Stage();
-	        stage.setTitle("New Window");
+	        stage.setTitle("Sales");
+	        Label labelname= new Label("Name");
 	        stage.setScene(scene);
+	        
 	        stage.show();
 	    } catch(Exception e1) {
 			System.out.println(e1.getMessage());
 
 
 	    }
+	    
+	    
 }
 }
 
