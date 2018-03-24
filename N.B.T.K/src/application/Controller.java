@@ -12,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
@@ -36,9 +38,12 @@ public class Controller {
 	        stage.show();
 
     } catch(Exception e1) {
+    	e1.printStackTrace();
 
 	}
 	}
+
+
 
 
 
@@ -46,6 +51,11 @@ public class Controller {
 		    try {
 		        FXMLLoader fxmlLoader = new FXMLLoader();
 		        fxmlLoader.setLocation(getClass().getResource("carpuarchase.fxml"));
+		        final TextField name = new TextField();
+
+		        name.setPromptText("Enter your first name.");
+		        name.setPrefColumnCount(10);
+		        name.getText();
 
 		        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
 		        Stage stage = new Stage();
@@ -56,13 +66,12 @@ public class Controller {
 		        stage.show();
 
 		    } catch(Exception e1) {
-
+		    	System.out.println(e1.getMessage());
 
 		    }
 
 
 	}
-
 
 		public void AppointmentW(ActionEvent e){
 		    try {
@@ -78,7 +87,7 @@ public class Controller {
 		        stage.show();
 
 		    } catch(Exception e1) {
-
+		    	System.out.println(e1.getMessage());
 
 
 		    }
@@ -183,11 +192,11 @@ private void Exits(ActionEvent e){
 public void addbooking(ActionEvent event) throws IOException{
 
 
-    Parent root = FXMLLoader.load(getClass().getResource("addcar.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("ddbooking.fxml"));
     Scene scene = new Scene(root);
     Stage stage = new Stage();
     stage.initModality(Modality.APPLICATION_MODAL);
-    stage.setTitle("addcar");
+    stage.setTitle("addbooking");
     stage.setScene(scene);
     stage.showAndWait();
 
@@ -200,12 +209,11 @@ public void addbooking(ActionEvent event) throws IOException{
 
 
 
-
 public void Removebooking(ActionEvent e){
 
 try {
 FXMLLoader fxmlLoader = new FXMLLoader();
-fxmlLoader.setLocation(getClass().getResource("removecar.fxml"));
+fxmlLoader.setLocation(getClass().getResource("removebooking.fxml"));
 Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
 Stage stage = new Stage();
 stage.setTitle("ServiceWindow");
@@ -228,7 +236,7 @@ public void Editbooking(ActionEvent e){
 
 try {
 FXMLLoader fxmlLoader = new FXMLLoader();
-fxmlLoader.setLocation(getClass().getResource("editcar.fxml"));
+fxmlLoader.setLocation(getClass().getResource("editbooking.fxml"));
 Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
 Stage stage = new Stage();
 stage.setTitle("ServiceWindow");
