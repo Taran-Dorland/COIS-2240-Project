@@ -2,6 +2,8 @@ package application;
 
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.sun.glass.ui.Window;
 
@@ -9,6 +11,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,8 +22,59 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-public class Controller {
-	private static final Scene Fxm2Scene = null;
+
+import javafx.event.*;
+
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+
+
+public class Controller implements Initializable{
+	
+	
+	
+	@FXML
+	public TextField lName = new TextField();
+	
+	
+	
+	@FXML
+	public TextField fName;
+	
+	@FXML TextFlow textFlow;
+	@FXML
+	public TextField pNumber;
+	@FXML
+	public TextField cNumber;
+	@FXML
+	public TextField stNumber;
+	@FXML
+	public TextField stName;
+	@FXML
+	public TextField Cname;
+	@FXML
+	public TextField pCode;
+	@FXML
+	public TextField pRovince;
+	@FXML
+	public TextField country;
+	
+	@FXML
+	public TextField Make;
+	@FXML
+	public TextField Model;
+	@FXML
+	public TextField Year;
+	@FXML
+	public TextField Type;
+	@FXML
+	public TextField condition;
+	@FXML
+	public TextField Enginesize;
+	@FXML
+	public TextField Kilometers;
+	
+
 	@FXML
 	public AnchorPane rootPane;
 
@@ -45,18 +99,27 @@ public class Controller {
 
 
 
+public void save(ActionEvent event){
+	System.out.println(fName.getText()+"-----fname");
+	System.out.println(lName.getText()+"-----lname");
+	System.out.println(pNumber.getText()+"----pnumber");
+	System.out.println(cNumber.getText()+"---cnumber");
+	System.out.println(stNumber.getText()+"----stnumber");
+	System.out.println(stName.getText()+"---stname");
+		System.out.println(Cname.getText()+"---cname");
+	System.out.println(pCode.getText()+"----pcode");
+	System.out.println(pRovince.getText()+"---province");
+	System.out.print(stNumber.getText()+"----fname");
+	
+	
+	
+}
 
 
 	    public void Purchase(ActionEvent e){
 		    try {
 		        FXMLLoader fxmlLoader = new FXMLLoader();
 		        fxmlLoader.setLocation(getClass().getResource("carpuarchase.fxml"));
-		        final TextField name = new TextField();
-
-		        name.setPromptText("Enter your first name.");
-		        name.setPrefColumnCount(10);
-		        name.getText();
-
 		        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
 		        Stage stage = new Stage();
 		        stage.setTitle("CarPurchase");
@@ -68,10 +131,11 @@ public class Controller {
 		    } catch(Exception e1) {
 		    	System.out.println(e1.getMessage());
 
+
 		    }
+	    }
 
 
-	}
 
 		public void AppointmentW(ActionEvent e){
 		    try {
@@ -256,6 +320,15 @@ stage.show();
 @FXML
 private void Exits2(ActionEvent eff){
 ((Stage)(((Button)eff.getSource()).getScene().getWindow())).close();
+}
+
+
+
+@Override
+public void initialize(URL arg0, ResourceBundle arg1) {
+	lName.setPromptText("Last Name");
+	// TODO Auto-generated method stub
+	
 }
 }
 
