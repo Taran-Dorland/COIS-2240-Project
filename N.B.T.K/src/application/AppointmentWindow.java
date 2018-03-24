@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javafx.application.*;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -27,6 +29,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
 public class AppointmentWindow {
+
 
 	private static Connection dbConn = null;
 
@@ -48,7 +51,7 @@ public class AppointmentWindow {
 		//---------------------------------------------------------
 
 
-		//Add auto-generating event id 
+		//Add auto-generating event id
 		//Add description
 
 		//---------------------------------------------------------
