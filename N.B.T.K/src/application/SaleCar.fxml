@@ -71,11 +71,6 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#Purchase" prefHeight="49.0" prefWidth="192.0" text="Payment" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets left="250.0" />
-               </GridPane.margin>
-            </Button>
             <Button mnemonicParsing="false" onAction="#Exits2" prefHeight="49.0" prefWidth="192.0" text="EXIT " GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="425.0" />
