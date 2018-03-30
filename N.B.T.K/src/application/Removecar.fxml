@@ -81,7 +81,7 @@
                   <Insets left="-600.0" top="220.0" />
                </GridPane.margin>
             </Label>
-            <ChoiceBox prefWidth="150.0" GridPane.rowIndex="1">
+            <ChoiceBox fx:id="custidbox" prefWidth="150.0" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="125.0" />
                </GridPane.margin>

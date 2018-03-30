@@ -51,7 +51,7 @@
                               <Insets top="55.0" />
                            </padding>
                            <children>
-                              <ChoiceBox prefWidth="150.0">
+                              <ChoiceBox fx:id="custidbox" prefWidth="150.0">
                                  <VBox.margin>
                                     <Insets left="140.0" top="-30.0" />
                                  </VBox.margin>

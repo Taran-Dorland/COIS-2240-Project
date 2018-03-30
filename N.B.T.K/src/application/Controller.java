@@ -16,6 +16,8 @@ import java.sql.Statement;
 import com.sun.glass.ui.Window;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -39,28 +42,38 @@ import javafx.scene.text.TextFlow;
 
 public class Controller implements Initializable{
 
+
 	private Connection dbConn = null;
 
 	@FXML
 	public TextField lName = new TextField();
-
+// instantiation needs to be done in order to set the prompting texts
 	@FXML
-	public TextField fName, pNumber, stNumber, Cname, pCode, pRovince, custId, bookType, bookDate, custEmail;
+	public TextField fName = new TextField(), pNumber = new TextField(), stNumber = new TextField(), Cname = new TextField(), pCode= new TextField(), pRovince= new TextField(), custId= new TextField(), bookType= new TextField(),
+
+	bookDate = new TextField(),custEmail = new TextField();
 
 	@FXML
 	public TextField Make, Model, Year, Type, condition, Enginesize, Kilometers;
-	
-	@FXML 
+
+	@FXML
 	public TextFlow textFlow;
 
 	@FXML
 	public AnchorPane rootPane;
-	
+
 	@FXML
 	public Button btnExit;
+	@FXML
+	public ChoiceBox<String> custidbox;
 
-	
-	
+	ObservableList<String> custidlist = FXCollections.observableArrayList("singke","married","singl");
+	@FXML
+	public void initialize(){
+		
+		custidbox.setItems(custidlist);
+	}
+
 	public void Sales(ActionEvent e){
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader();
@@ -82,21 +95,21 @@ public class Controller implements Initializable{
 
 	//Add booking to database
 	public void addBooking(ActionEvent event) {
-		
+
 		//
-		
+
 		try {
-			
+
 			//-----------------------------------------------------------------------------------
-			
+
 			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
-			
+
 			String sql = "INSERT INTO booking(id, type, date, firstName, lastName, phoneNumber, email, address, city, province, postalCode) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-			
+
 			PreparedStatement ps = dbConn.prepareStatement(sql);
-			
+
 			ps = dbConn.prepareStatement(sql);
-						
+
 			ps.setInt(1, Integer.parseInt(custId.getText()));
 			ps.setString(2, bookType.getText());
 			ps.setString(3, bookDate.getText());
@@ -111,21 +124,21 @@ public class Controller implements Initializable{
 
 			ps.executeUpdate();
 			dbConn.close();
-			
+
 			System.out.println("Successfully written to database.");
 
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
-			
+
 			//-----------------------------------------------------------------------------------
 		}
-		
+
 	}
 
 	//Add purchase to database
 	public void save(ActionEvent event){
-		
+
 		//System.out.println(fName.getText()+"-----fname");
 		//System.out.println(lName.getText()+"-----lname");
 		//System.out.println(pNumber.getText()+"----pnumber");
@@ -138,17 +151,17 @@ public class Controller implements Initializable{
 		//System.out.print(stNumber.getText()+"----fname");
 
 		//-----------------------------------------------------------------------------------
-		
+
 		//Email, id not applicable in this form, no proper input
 		try {
 			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
-			
+
 			String sql = "INSERT INTO customer(id, firstName, lastName, phoneNumber, email, address, city, province, postalCode) VALUES(?,?,?,?,?,?,?,?,?)";
-			
+
 			PreparedStatement ps = dbConn.prepareStatement(sql);
-			
+
 			ps = dbConn.prepareStatement(sql);
-						
+
 			ps.setInt(1, 5);
 			ps.setString(2, fName.getText());
 			ps.setString(3, lName.getText());
@@ -161,13 +174,13 @@ public class Controller implements Initializable{
 
 			ps.executeUpdate();
 			dbConn.close();
-			
+
 			System.out.println("Successfully written to database.");
 
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
-			
+
 			//-----------------------------------------------------------------------------------
 		}
 
@@ -296,6 +309,7 @@ public class Controller implements Initializable{
 			stage.setScene(scene);
 			stage.show();
 
+
 		} catch(Exception e1) { }
 
 	}
@@ -310,7 +324,7 @@ public class Controller implements Initializable{
 			stage.setTitle("ServiceWindow");
 			stage.setScene(scene);
 			stage.show();
-			
+
 		} catch(Exception e1) { }
 
 	}
@@ -320,12 +334,25 @@ public class Controller implements Initializable{
 		((Stage)(((Button)eff.getSource()).getScene().getWindow())).close();
 	}
 
-
+//// EXAMPLE ON HOW ITS DONE AND IT WORKS WITHOUTH PREDEFINED LIBRARYS
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 		lName.setPromptText("Last Name");
+		bookDate.setPromptText("dd/mm/year");
+		fName.setPromptText("First Name");
+		pNumber .setPromptText("ex 416-000-0000");
+		stNumber .setPromptText("ex 52 ");
+		Cname .setPromptText("City name ex boston");
+		pCode .setPromptText("Postal code");
+		pRovince.setPromptText("ex Ontario ");
+		custId.setPromptText("AUTO GENERATED");
+		bookType.setPromptText("");
+		bookDate .setPromptText("Last Name");
+		custEmail .setPromptText("Last Name");
+
+
 
 	}
 }
