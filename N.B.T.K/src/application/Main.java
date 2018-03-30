@@ -1,5 +1,15 @@
-package application;
 
+/*  Project : NBTK AUTO SOLUTIONS 
+ * 	Course :  Cois 2240 FINAL PROJECT
+ *  Contributors : Nick Gordan, Batstone Christyanton, Taran Dorland, Kevin Dsane-Selby
+ *  
+ *  
+ *  Description of Main.java 
+ *  
+ *  * 
+ *  * * 
+ * *************************************************************************************************************************************/
+package application;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
