@@ -2,6 +2,7 @@ package application;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 
 import javafx.application.*;
 import javafx.event.ActionEvent;
@@ -74,34 +76,37 @@ public class AppointmentWindow {
 		Label emailLabel = new Label ("email: ");
 		GridPane.setConstraints(emailLabel, 0, 4);
 
+        Label emailLabel2 = new Label ("email2: ");
+        GridPane.setConstraints(emailLabel2, 0, 4);
 		//Name Input
 		TextField dateInput = new TextField();
-		dateInput.setPromptText("dd/mm/yyyy");
 		GridPane.setConstraints(dateInput, 1, 1);
 
 		//user Input
 		TextField userInput = new TextField();
-		userInput.setPromptText("Numbers only");
 		GridPane.setConstraints(userInput, 1, 0);
 
 		//type Input
 		TextField typeInput = new TextField();
-		typeInput.setPromptText("booking type");
 		GridPane.setConstraints(typeInput, 1, 2);
 
 		//phone Input
 		TextField phoneInput = new TextField();
-		phoneInput.setPromptText("555-555-5555");
 		GridPane.setConstraints(phoneInput, 1, 3);
 
 		//email Input
 		TextField emailInput = new TextField();
-		emailInput.setPromptText("johnsmith@sample.com");
 		GridPane.setConstraints(emailInput, 1, 4);
 
 		//Login
 		Button loginButton = new Button("ADD information");
 		GridPane.setConstraints(loginButton, 1, 8);
+		
+		dateInput.setPromptText(" dd/mm/yyyy ");
+		userInput.setPromptText(" Numbers only ");
+		typeInput.setPromptText(" booking type ");
+		phoneInput.setPromptText(" 555-555-5555 ");
+		emailInput.setPromptText(" johnsmith@sample.com ");
 
 		loginButton.setOnAction(e -> {
 
@@ -150,7 +155,7 @@ public class AppointmentWindow {
 		goBackToAppointment.setOnAction(e -> window.close());
 
 		//Add everything to grid
-		grid.getChildren().addAll(nameLabel,dateLabel, typeLabel, phoneLabel, emailLabel, userInput, dateInput,phoneInput, emailInput,typeInput,  loginButton , goBackToAppointment);
+		grid.getChildren().addAll(nameLabel,dateLabel, typeLabel, phoneLabel, emailLabel, emailLabel2, userInput, dateInput,phoneInput, emailInput,typeInput,  loginButton , goBackToAppointment);
 
 		Scene scene = new Scene(grid, 400, 400);
 		window.setScene(scene);
@@ -230,5 +235,10 @@ public class AppointmentWindow {
 		Scene serviceScene = new Scene(serviceLay);
 		window4.setScene(serviceScene);
 		window4.showAndWait();
+	}
+	
+	//overide the for the prompt
+	public void initialize (URL arg0, ResourceBundle arg1) {
+		
 	}
 }

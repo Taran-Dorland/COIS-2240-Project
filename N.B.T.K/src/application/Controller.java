@@ -1,16 +1,18 @@
 
 /*  Project : NBTK AUTO SOLUTIONS 
+
  * 	Course :  Cois 2240 FINAL PROJECT
  *  Contributors : Nick Gordan, Batstone Christyanton, Taran Dorland, Kevin Dsane-Selby
  *  
  *  
  *  Description of Controller.java 
- *  * The controller class is responsible for the MVC  law of java EFX we are using the controller portion which is responsible for opening 
+ *  * The controller class is responsible for the MVC law of java EFX we are using the controller portion which is responsible for opening 
  *  windows are using to implement different function in this call you will see the instantiation of text fields and other try catch event
  *  used when opening and closing of windows. Here also we setting up the the prompt text of different input fields which we can use show the
  *  user what the input looks like. 
  *  * * 
  * *************************************************************************************************************************************/
+
 package application;
 import java.io.IOException;
 import java.net.URL;
@@ -65,24 +67,17 @@ public class Controller implements Initializable{
 	public TextFlow textFlow;
 	@FXML
 	public AnchorPane rootPane;
-	// button exit programmed to click the the window 
 	@FXML
 	public Button btnExit;
 	@FXML
-	// instantiation of choice box and setting different items in them 
-	public ChoiceBox<String> custidbox;
-	ObservableList<String> custidlist = FXCollections.observableArrayList("singke","married","singl");
-	@FXML
-		public void initialize(){
+	public void initialize() {}
 
-		custidbox.setItems(custidlist);
-	}
-
-	//-------------------------------------SALES BUTTON Functionality ------------ these comments apply to the others----------------------------------------
+	//--------------------------------------------------------------------------------------------------------------------------------
+	//SALES BUTTON Functionality ------------ These comments apply to the others
 	public void Sales(ActionEvent e){
 		// trying and then later catching the exception
 		try {
-			
+
 			// loading the fxml file 
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			// fxml set location of the background
@@ -134,27 +129,12 @@ public class Controller implements Initializable{
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
-
-			//---------------------------------------------------------------------------------------------------------------
 		}
-
 	}
 
+	//--------------------------------------------------------------------------------------------------------------------------------
 	//Add purchase to database
 	public void save(ActionEvent event){
-
-		//System.out.println(fName.getText()+"-----fname");
-		//System.out.println(lName.getText()+"-----lname");
-		//System.out.println(pNumber.getText()+"----pnumber");
-		//System.out.println(cNumber.getText()+"---cnumber");
-		//System.out.println(stNumber.getText()+"----stnumber");
-		//System.out.println(stName.getText()+"---stname");
-		//System.out.println(Cname.getText()+"---cname");
-		//System.out.println(pCode.getText()+"----pcode");
-		//System.out.println(pRovince.getText()+"---province");
-		//System.out.print(stNumber.getText()+"----fname");
-
-		//-------------------------------------------------------------------------------------------------------------------
 
 		//Email, id not applicable in this form, no proper input
 		try {
@@ -184,13 +164,11 @@ public class Controller implements Initializable{
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
-
-			
 		}
-
 	}
 
-	//--------------------------------------PurchaseButton functionality -----------------------------------------------
+	//--------------------------------------------------------------------------------------------------------------------------------
+	//PurchaseButton functionality
 	public void Purchase(ActionEvent e){
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader();
@@ -208,7 +186,8 @@ public class Controller implements Initializable{
 		}
 	}
 
-//-------------------------------------APPOINTMENT Button Functionality --------------------------------------------------
+	//--------------------------------------------------------------------------------------------------------------------------------
+	//APPOINTMENT Button Functionality
 
 	public void AppointmentW(ActionEvent e){
 		try {
@@ -226,9 +205,10 @@ public class Controller implements Initializable{
 		} catch(Exception e1) {
 			System.out.println(e1.getMessage());
 		}
-
 	}
-//--------------------------------SERVICE WINDOW--------------------------------------------------------------
+	
+	//--------------------------------------------------------------------------------------------------------------------------------
+	//SERVICE WINDOW
 	public void ServiceWindow(ActionEvent e){
 
 		try {
@@ -242,7 +222,9 @@ public class Controller implements Initializable{
 
 		} catch(Exception e1) { }
 	}
-	//----------------------------ADD CAR -----------------------------------------------------------------
+	
+	//--------------------------------------------------------------------------------------------------------------------------------
+	//ADD CAR
 
 	public void addcar(ActionEvent event) throws IOException{
 
@@ -254,7 +236,9 @@ public class Controller implements Initializable{
 		stage.setScene(scene);
 		stage.showAndWait();
 	}
-	//---------------------------REMOVER CAR-----------------------------------------------------------------
+	
+	//--------------------------------------------------------------------------------------------------------------------------------
+	//REMOVER CAR
 	public void Removecar(ActionEvent e){
 
 		try {
@@ -268,25 +252,9 @@ public class Controller implements Initializable{
 
 		} catch(Exception e1) { }
 	}
-	//---------------------------EDIT CAR ---------------------------------------------------------------------
-	public void EditCAr(ActionEvent e){
-
-		try {
-			FXMLLoader fxmlLoader = new FXMLLoader();
-			fxmlLoader.setLocation(getClass().getResource("editcar.fxml"));
-			Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
-			Stage stage = new Stage();
-			stage.setTitle("ServiceWindow");
-			stage.setScene(scene);
-			stage.show();
-
-
-
-		} catch(Exception e1) { }
-
-	}
-	//--------------------------EXIT BUTTON --------------------------------------------------------------------
-
+	
+	//--------------------------------------------------------------------------------------------------------------------------------
+	//EXIT BUTTON
 	@FXML
 	private void Exits(ActionEvent e){
 		((Stage)(((Button)e.getSource()).getScene().getWindow())).close();
@@ -303,7 +271,9 @@ public class Controller implements Initializable{
 		stage.setScene(scene);
 		stage.showAndWait();
 	}
-	//------------------------------REMOVE BOOKING FUNCTIOLAITY -----------------------------------------------------
+	
+	//--------------------------------------------------------------------------------------------------------------------------------
+	//REMOVE BOOKING FUNCTIOLAITY
 
 	public void Removebooking(ActionEvent e){
 
@@ -320,30 +290,15 @@ public class Controller implements Initializable{
 		} catch(Exception e1) { }
 
 	}
-	//--------------------------EDIT BOOKING FUNCTIONALITY -------------------------------------------------------------
-
-	public void Editbooking(ActionEvent e){
-
-		try {
-			FXMLLoader fxmlLoader = new FXMLLoader();
-			fxmlLoader.setLocation(getClass().getResource("editbooking.fxml"));
-			Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
-			Stage stage = new Stage();
-			stage.setTitle("ServiceWindow");
-			stage.setScene(scene);
-			stage.show();
-
-		} catch(Exception e1) { }
-
-	}
-	//-----------------------------------------------------------------------------------------------------------------
+	
+	//--------------------------------------------------------------------------------------------------------------------------------
 
 	@FXML
 	private void Exits2(ActionEvent eff){
 		((Stage)(((Button)eff.getSource()).getScene().getWindow())).close();
 	}
 
-//// EXAMPLE ON HOW ITS DONE AND IT WORKS WITHOUT PREDEFINED LIBRARYS
+	//// EXAMPLE ON HOW ITS DONE AND IT WORKS WITHOUT PREDEFINED LIBRARYS
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -351,17 +306,15 @@ public class Controller implements Initializable{
 		lName.setPromptText("Last Name");
 		bookDate.setPromptText("dd/mm/year");
 		fName.setPromptText("First Name");
-		pNumber .setPromptText("ex 416-000-0000");
-		stNumber .setPromptText("ex 52 ");
-		Cname .setPromptText("City name ex boston");
-		pCode .setPromptText("Postal code");
+		pNumber.setPromptText("ex 416-000-0000");
+		stNumber.setPromptText("ex 52");
+		Cname.setPromptText("City name ex boston");
+		pCode.setPromptText("Postal code");
 		pRovince.setPromptText("ex Ontario ");
 		custId.setPromptText("AUTO GENERATED");
-		bookType.setPromptText("");
-		bookDate .setPromptText("Last Name");
-		custEmail .setPromptText("Last Name");
-
-
+		bookType.setPromptText("ex Service");
+		bookDate.setPromptText("dd/mm/year");
+		custEmail.setPromptText("johnsmith@sample.com");
 
 	}
 }

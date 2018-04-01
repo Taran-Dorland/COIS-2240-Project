@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.ColorAdjust?>
@@ -11,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
         <columnConstraints>
@@ -41,6 +47,9 @@
                <GridPane.margin>
                   <Insets top="55.0" />
                </GridPane.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#Removecar" prefHeight="59.0" prefWidth="173.0" text="REMOVE CAR" />
+               </children>
             </VBox>
             <VBox prefHeight="362.0" prefWidth="640.0" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#addcar" prefHeight="59.0" prefWidth="173.0" text="ADD CAR" GridPane.rowIndex="1">
@@ -48,19 +57,9 @@
                   <Insets left="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#EditCAr" prefHeight="59.0" prefWidth="173.0" text="EDIT CAR " GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="460.0" top="20.0" />
-               </GridPane.margin>
-            </Button>
             <Button mnemonicParsing="false" onAction="#Exits" prefHeight="59.0" prefWidth="173.0" text="EXIT" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="350.0" top="20.0" />
-               </GridPane.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#Removecar" prefHeight="59.0" prefWidth="173.0" text="REMOVE CAR" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets left="275.0" />
                </GridPane.margin>
             </Button>
          </children>
