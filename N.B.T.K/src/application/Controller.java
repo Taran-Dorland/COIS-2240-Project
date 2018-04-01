@@ -14,7 +14,9 @@
  * *************************************************************************************************************************************/
 
 package application;
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -40,7 +42,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
@@ -55,14 +61,15 @@ import javafx.scene.text.TextFlow;
 
 public class Controller implements Initializable{
 
-
+	private int x;
 	private Connection dbConn = null;
+	
 	// instantiation needs to be done in order to set the prompting texts and being able to use them 
 	@FXML
 	public TextField lName = new TextField(),fName = new TextField(), pNumber = new TextField(), stNumber = new TextField(), Cname = new TextField(), pCode= new TextField(), pRovince= new TextField(), custId= new TextField(), bookType= new TextField(),
 	bookDate = new TextField(),custEmail = new TextField();
 	@FXML
-	public TextField Make, Model, Year, Type, condition, Enginesize, Kilometers;
+	public TextField cMake = new TextField(), cModel = new TextField(), cYear = new TextField(), cEngineSize = new TextField(), cType = new TextField(), cKilometers = new TextField(), cCondition = new TextField(), cPrice = new TextField();
 	@FXML
 	public TextFlow textFlow;
 	@FXML
@@ -70,8 +77,18 @@ public class Controller implements Initializable{
 	@FXML
 	public Button btnExit;
 	@FXML
+	public ImageView ivOne = new ImageView(), ivTwo = new ImageView();
+	@FXML
+	public RadioButton rBtnOne = new RadioButton(), rBtnTwo = new RadioButton();
+	@FXML
+	public ToggleGroup tg = new ToggleGroup();
+	@FXML
 	public void initialize() {}
 
+	public Class<? extends Controller> getThisClass() {
+		return this.getClass();
+	}
+	
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//SALES BUTTON Functionality ------------ These comments apply to the others
 	public void Sales(ActionEvent e){
@@ -93,6 +110,7 @@ public class Controller implements Initializable{
 			// stage to show 
 			stage.show();
 			// catch exception 
+
 		} catch(Exception e1) {
 			e1.printStackTrace();
 
@@ -146,7 +164,7 @@ public class Controller implements Initializable{
 
 			ps = dbConn.prepareStatement(sql);
 
-			ps.setInt(1, 5);
+			ps.setInt(1, 10);
 			ps.setString(2, fName.getText());
 			ps.setString(3, lName.getText());
 			ps.setInt(4, Integer.parseInt(pNumber.getText()));
@@ -176,10 +194,10 @@ public class Controller implements Initializable{
 			Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
 			Stage stage = new Stage();
 			stage.setTitle("CarPurchase");
-
 			stage.setScene(scene);
-
 			stage.show();
+			
+			
 
 		} catch(Exception e1) {
 			System.out.println(e1.getMessage());
@@ -206,7 +224,7 @@ public class Controller implements Initializable{
 			System.out.println(e1.getMessage());
 		}
 	}
-	
+
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//SERVICE WINDOW
 	public void ServiceWindow(ActionEvent e){
@@ -222,7 +240,7 @@ public class Controller implements Initializable{
 
 		} catch(Exception e1) { }
 	}
-	
+
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//ADD CAR
 
@@ -236,7 +254,7 @@ public class Controller implements Initializable{
 		stage.setScene(scene);
 		stage.showAndWait();
 	}
-	
+
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//REMOVER CAR
 	public void Removecar(ActionEvent e){
@@ -252,7 +270,7 @@ public class Controller implements Initializable{
 
 		} catch(Exception e1) { }
 	}
-	
+
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//EXIT BUTTON
 	@FXML
@@ -271,7 +289,7 @@ public class Controller implements Initializable{
 		stage.setScene(scene);
 		stage.showAndWait();
 	}
-	
+
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//REMOVE BOOKING FUNCTIOLAITY
 
@@ -290,9 +308,22 @@ public class Controller implements Initializable{
 		} catch(Exception e1) { }
 
 	}
+
 	
 	//--------------------------------------------------------------------------------------------------------------------------------
-
+	//Used to determine which car is selected
+	public void CheckCar(ActionEvent e) {
+		
+		RadioButton selectedRB = (RadioButton) tg.getSelectedToggle();
+		
+		if (selectedRB.equals(rBtnOne)) {
+			System.out.println("TOYOTA SELECTED");
+		} else if (selectedRB.equals(rBtnTwo)) {
+			System.out.println("HONDA SELECTED");
+		}
+		
+	}
+	
 	@FXML
 	private void Exits2(ActionEvent eff){
 		((Stage)(((Button)eff.getSource()).getScene().getWindow())).close();
@@ -302,7 +333,7 @@ public class Controller implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		
 		lName.setPromptText("Last Name");
 		bookDate.setPromptText("dd/mm/year");
 		fName.setPromptText("First Name");
@@ -315,6 +346,59 @@ public class Controller implements Initializable{
 		bookType.setPromptText("ex Service");
 		bookDate.setPromptText("dd/mm/year");
 		custEmail.setPromptText("johnsmith@sample.com");
+		
+		try {
+
+			System.out.println("x is: " + x);
+			
+			//Database stuff
+			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
+			Statement stmt = null;
+			stmt = dbConn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM CARS;");
+
+			//Move the index to the correct car
+			for (int i = 0; i < x; i++) {
+				rs.next();
+			}
+
+			int carId = rs.getInt("id");
+			String carMake = rs.getString("make");
+			String carModel = rs.getString("model");
+			String carYear = rs.getString("year");
+			String carEngineSize = rs.getString("engine_size");
+			String carType = rs.getString("type");
+			int carKm = rs.getInt("km");
+			String carCondition = rs.getString("condition");
+			int carPrice = rs.getInt("price");
+			String carImg = rs.getString("picture");
+
+			System.out.println(carId + " " + carMake + " " + carModel);
+
+			cMake.setText(carMake);
+			cModel.setText(carModel);
+			cYear.setText(carYear);
+			cEngineSize.setText(carEngineSize);
+			cType.setText(carType);
+			cKilometers.setText(Integer.toString(carKm));
+			cCondition.setText(carCondition);
+			cPrice.setText(Integer.toString(carPrice));
+
+
+			rs.close();
+			stmt.close();
+			dbConn.close();
+
+		} catch (Exception e) {
+
+		}
+
+
+
+
+
+
+
 
 	}
 }
