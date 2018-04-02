@@ -11,6 +11,8 @@
  * *************************************************************************************************************************************/
 package application;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -34,6 +36,17 @@ public class Main extends Application{
 	}
 
 	public void start(Stage primaryStage) {
+		
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter("var.txt");
+			writer.print("");
+			writer.close();
+			
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		
 		try {
 			// setting the title of the for the application window
 			primaryStage.setTitle("N.B.T.K Auto S MRUN ");

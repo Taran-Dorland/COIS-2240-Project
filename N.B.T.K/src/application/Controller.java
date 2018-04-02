@@ -14,8 +14,14 @@
  * *************************************************************************************************************************************/
 
 package application;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,9 +67,10 @@ import javafx.scene.text.TextFlow;
 
 public class Controller implements Initializable{
 
-	private int x;
+	private int x = 1;
 	private Connection dbConn = null;
-	
+
+
 	// instantiation needs to be done in order to set the prompting texts and being able to use them 
 	@FXML
 	public TextField lName = new TextField(),fName = new TextField(), pNumber = new TextField(), stNumber = new TextField(), Cname = new TextField(), pCode= new TextField(), pRovince= new TextField(), custId= new TextField(), bookType= new TextField(),
@@ -88,7 +95,7 @@ public class Controller implements Initializable{
 	public Class<? extends Controller> getThisClass() {
 		return this.getClass();
 	}
-	
+
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//SALES BUTTON Functionality ------------ These comments apply to the others
 	public void Sales(ActionEvent e){
@@ -196,8 +203,7 @@ public class Controller implements Initializable{
 			stage.setTitle("CarPurchase");
 			stage.setScene(scene);
 			stage.show();
-			
-			
+
 
 		} catch(Exception e1) {
 			System.out.println(e1.getMessage());
@@ -309,21 +315,46 @@ public class Controller implements Initializable{
 
 	}
 
-	
+
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//Used to determine which car is selected
 	public void CheckCar(ActionEvent e) {
-		
+
 		RadioButton selectedRB = (RadioButton) tg.getSelectedToggle();
-		
+
 		if (selectedRB.equals(rBtnOne)) {
+			x = 1;
 			System.out.println("TOYOTA SELECTED");
 		} else if (selectedRB.equals(rBtnTwo)) {
+			x = 2;
 			System.out.println("HONDA SELECTED");
 		}
 		
+		//Refresh the text file with nothing
+		PrintWriter pWriter;
+		try {
+			pWriter = new PrintWriter("var.txt");
+			pWriter.print("");
+			pWriter.close();
+			
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		
+		//Write the new x variable to var.txt
+		try {
+			FileWriter writer = new FileWriter("var.txt", true);
+			BufferedWriter bufferedWriter = new BufferedWriter(writer);
+			
+			bufferedWriter.write(Integer.toString(x));
+			bufferedWriter.close();
+				
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 	}
-	
+
 	@FXML
 	private void Exits2(ActionEvent eff){
 		((Stage)(((Button)eff.getSource()).getScene().getWindow())).close();
@@ -333,7 +364,7 @@ public class Controller implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 		lName.setPromptText("Last Name");
 		bookDate.setPromptText("dd/mm/year");
 		fName.setPromptText("First Name");
@@ -347,10 +378,30 @@ public class Controller implements Initializable{
 		bookDate.setPromptText("dd/mm/year");
 		custEmail.setPromptText("johnsmith@sample.com");
 		
+		//Read the x variable from var.txt
+		try {
+            FileReader reader = new FileReader("var.txt");
+            BufferedReader bufferedReader = new BufferedReader(reader);
+ 
+            String varHolder;
+ 
+            while ((varHolder = bufferedReader.readLine()) != null) {
+                System.out.println(varHolder);
+                x = Integer.parseInt(varHolder);
+                
+            }
+            reader.close();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+		//
+		
 		try {
 
 			System.out.println("x is: " + x);
-			
+
 			//Database stuff
 			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
 			Statement stmt = null;
@@ -392,13 +443,5 @@ public class Controller implements Initializable{
 		} catch (Exception e) {
 
 		}
-
-
-
-
-
-
-
-
 	}
 }
