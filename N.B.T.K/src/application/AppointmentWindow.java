@@ -1,21 +1,11 @@
 package application;
 
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
-
-import javafx.application.*;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -23,11 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
-import javafx.stage.*;
-import javafx.scene.*;
-import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
 public class AppointmentWindow {
@@ -101,7 +87,7 @@ public class AppointmentWindow {
 		//Login
 		Button loginButton = new Button("ADD information");
 		GridPane.setConstraints(loginButton, 1, 8);
-		
+
 		dateInput.setPromptText(" dd/mm/yyyy ");
 		userInput.setPromptText(" Numbers only ");
 		typeInput.setPromptText(" booking type ");
@@ -236,9 +222,9 @@ public class AppointmentWindow {
 		window4.setScene(serviceScene);
 		window4.showAndWait();
 	}
-	
+
 	//overide the for the prompt
 	public void initialize (URL arg0, ResourceBundle arg1) {
-		
+
 	}
 }

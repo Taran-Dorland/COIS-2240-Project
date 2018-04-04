@@ -1,42 +1,34 @@
 
-/*  Project : NBTK AUTO SOLUTIONS 
+/*  Project : NBTK AUTO SOLUTIONS
 
  * 	Course :  Cois 2240 FINAL PROJECT
  *  Contributors : Nick Gordan, Batstone Christyanton, Taran Dorland, Kevin Dsane-Selby
- *  
- *  
- *  Description of Controller.java 
- *  * The controller class is responsible for the MVC law of java EFX we are using the controller portion which is responsible for opening 
+ *
+ *
+ *  Description of Controller.java
+ *  * The controller class is responsible for the MVC law of java EFX we are using the controller portion which is responsible for opening
  *  windows are using to implement different function in this call you will see the instantiation of text fields and other try catch event
  *  used when opening and closing of windows. Here also we setting up the the prompt text of different input fields which we can use show the
- *  user what the input looks like. 
- *  * * 
+ *  user what the input looks like.
+ *  * *
  * *************************************************************************************************************************************/
 
 package application;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.sql.Statement;
-
-import com.sun.glass.ui.Window;
-
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,32 +38,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-
-import javafx.event.*;
-
-import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-
 
 public class Controller implements Initializable{
 
+	ObservableList<String> uidLoglist = FXCollections.observableArrayList("user1","manager","training");
 	private int x = 1;
 	private Connection dbConn = null;
-
-
-	// instantiation needs to be done in order to set the prompting texts and being able to use them 
+	// instantiation needs to be done in order to set the prompting texts and being able to use them
 	@FXML
 	public TextField lName = new TextField(),fName = new TextField(), pNumber = new TextField(), stNumber = new TextField(), Cname = new TextField(), pCode= new TextField(), pRovince= new TextField(), custId= new TextField(), bookType= new TextField(),
 	bookDate = new TextField(),custEmail = new TextField();
@@ -82,6 +64,8 @@ public class Controller implements Initializable{
 	@FXML
 	public AnchorPane rootPane;
 	@FXML
+	public ComboBox  uid;
+	@FXML
 	public Button btnExit;
 	@FXML
 	public ImageView ivOne = new ImageView(), ivTwo = new ImageView();
@@ -90,11 +74,11 @@ public class Controller implements Initializable{
 	@FXML
 	public ToggleGroup tg = new ToggleGroup();
 	@FXML
-	public void initialize() {}
+	public void initialize() {
 
-	public Class<? extends Controller> getThisClass() {
-		return this.getClass();
+
 	}
+
 
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//SALES BUTTON Functionality ------------ These comments apply to the others
@@ -102,21 +86,21 @@ public class Controller implements Initializable{
 		// trying and then later catching the exception
 		try {
 
-			// loading the fxml file 
+			// loading the fxml file
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			// fxml set location of the background
 			fxmlLoader.setLocation(getClass().getResource("salecar.fxml"));
-			// scene size of the window to be 1280 by 720 
+			// scene size of the window to be 1280 by 720
 			Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
-			// setting the stage of the sales window on load 
+			// setting the stage of the sales window on load
 			Stage stage = new Stage();
-			// stage title to be sales 
+			// stage title to be sales
 			stage.setTitle("Sales");
 			// set scene
 			stage.setScene(scene);
-			// stage to show 
+			// stage to show
 			stage.show();
-			// catch exception 
+			// catch exception
 
 		} catch(Exception e1) {
 			e1.printStackTrace();
@@ -304,11 +288,13 @@ public class Controller implements Initializable{
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(getClass().getResource("removebooking.fxml"));
+
 			Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
 			Stage stage = new Stage();
 			stage.setTitle("ServiceWindow");
 			stage.setScene(scene);
 			stage.show();
+
 
 
 		} catch(Exception e1) { }
@@ -329,30 +315,30 @@ public class Controller implements Initializable{
 			x = 2;
 			System.out.println("HONDA SELECTED");
 		}
-		
+
 		//Refresh the text file with nothing
 		PrintWriter pWriter;
 		try {
 			pWriter = new PrintWriter("var.txt");
 			pWriter.print("");
 			pWriter.close();
-			
+
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		//Write the new x variable to var.txt
 		try {
 			FileWriter writer = new FileWriter("var.txt", true);
 			BufferedWriter bufferedWriter = new BufferedWriter(writer);
-			
+
 			bufferedWriter.write(Integer.toString(x));
 			bufferedWriter.close();
-				
+
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+
 	}
 
 	@FXML
@@ -377,27 +363,29 @@ public class Controller implements Initializable{
 		bookType.setPromptText("ex Service");
 		bookDate.setPromptText("dd/mm/year");
 		custEmail.setPromptText("johnsmith@sample.com");
-		
+
+
 		//Read the x variable from var.txt
 		try {
             FileReader reader = new FileReader("var.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
- 
+
             String varHolder;
- 
+
             while ((varHolder = bufferedReader.readLine()) != null) {
                 System.out.println(varHolder);
                 x = Integer.parseInt(varHolder);
-                
+
             }
             reader.close();
- 
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+// using the combobox another way
+		//https://o7planning.org/en/11081/javafx-combobox-tutorial
 
-		//
-		
+
 		try {
 
 			System.out.println("x is: " + x);

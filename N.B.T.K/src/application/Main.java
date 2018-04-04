@@ -1,30 +1,25 @@
 
-/*  Project : NBTK AUTO SOLUTIONS 
+/*  Project : NBTK AUTO SOLUTIONS
  * 	Course :  Cois 2240 FINAL PROJECT
  *  Contributors : Nick Gordan, Batstone Christyanton, Taran Dorland, Kevin Dsane-Selby
- *  
- *  
- *  Description of Main.java 
- *  
- *  * 
- *  * * 
+ *
+ *
+ *  Description of Main.java
+ *
+ *  *
+ *  * *
  * *************************************************************************************************************************************/
 package application;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
+
 import javafx.fxml.FXMLLoader;
 
 
@@ -36,17 +31,17 @@ public class Main extends Application{
 	}
 
 	public void start(Stage primaryStage) {
-		
+
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter("var.txt");
 			writer.print("");
 			writer.close();
-			
+
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		try {
 			// setting the title of the for the application window
 			primaryStage.setTitle("N.B.T.K Auto S MRUN ");
@@ -56,7 +51,7 @@ public class Main extends Application{
 			Scene scene = new Scene(root, 800, 800);
 			// using the style sheets and the css sheet for design
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		
+
 			// setting the scene to start
 			primaryStage.setScene(scene);
 			// scene displays when running
