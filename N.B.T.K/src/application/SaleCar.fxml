@@ -76,21 +76,30 @@
                   <Insets left="425.0" />
                </GridPane.margin>
             </Button>
-            <ImageView fx:id="ivOne" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+            <ImageView fx:id="ivOne" fitHeight="250.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                <image>
                   <Image url="@../../toyota_c.png" />
                </image></ImageView>
-            <ImageView fx:id="ivTwo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+            <ImageView fx:id="ivTwo" fitHeight="250.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
                <image>
                   <Image url="@../../honda_c.png" />
                </image>
             </ImageView>
-            <RadioButton fx:id="rBtnOne" mnemonicParsing="false" onAction="#CheckCar" opacity="0.0" prefHeight="85.0" prefWidth="200.0" GridPane.rowIndex="2">
+            <RadioButton fx:id="rBtnOne" mnemonicParsing="false" onAction="#CheckCar" prefHeight="85.0" prefWidth="200.0" textFill="#0f0f0f" GridPane.rowIndex="2">
                <toggleGroup>
                   <ToggleGroup fx:id="tg" />
                </toggleGroup>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets left="350.0" />
+               </GridPane.margin>
             </RadioButton>
-            <RadioButton fx:id="rBtnTwo" mnemonicParsing="false" onAction="#CheckCar" opacity="0.0" prefHeight="85.0" prefWidth="200.0" toggleGroup="$tg" GridPane.rowIndex="3" />
+            <RadioButton fx:id="rBtnTwo" mnemonicParsing="false" onAction="#CheckCar" prefHeight="85.0" prefWidth="200.0" textFill="#cd1414" toggleGroup="$tg" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="350.0" />
+               </GridPane.margin></RadioButton>
          </children>
       </GridPane>
    </children>

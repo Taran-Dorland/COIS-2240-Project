@@ -1,5 +1,6 @@
 
-/*  Project : NBTK AUTO SOLUTIONS
+/*  Project : NBTK AUTO SOLUTIONS\
+ * 
 
  * 	Course :  Cois 2240 FINAL PROJECT
  *  Contributors : Nick Gordan, Batstone Christyanton, Taran Dorland, Kevin Dsane-Selby
@@ -74,9 +75,6 @@ public class Controller implements Initializable{
 	@FXML
 	public AnchorPane rootPane;
 	@FXML
-	public ComboBox <userid>  uid;
-	public ObservableList<userid> uidLoglist = FXCollections.observableArrayList();
-	@FXML
 	public Button btnExit;
 	@FXML
 	public ImageView ivOne = new ImageView(), ivTwo = new ImageView();
@@ -89,22 +87,7 @@ public class Controller implements Initializable{
 	@FXML
 	public TextField txtBookId = new TextField(), txtBookType = new TextField(), txtServiceId = new TextField(), txtServicePlate = new TextField();
 
-	private TextInputControl outputTextArea;
 
-
-
-	@FXML
-	public void initialize() {
-
-		uidLoglist.add(new userid ("User1"));
-		uid.setItems(uidLoglist);
-	}
-
-	@FXML
-	private void handleComboBoxAction() {
-		userid selectedPerson = uid.getSelectionModel().getSelectedItem();
-		outputTextArea.appendText("uidAction (selected: " + selectedPerson + ")\n");
-	}
 
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//SALES BUTTON Functionality ------------ These comments apply to the others
@@ -515,8 +498,7 @@ public class Controller implements Initializable{
 		((Stage)(((Button)eff.getSource()).getScene().getWindow())).close();
 	}
 
-	//// EXAMPLE ON HOW ITS DONE AND IT WORKS WITHOUT PREDEFINED LIBRARYS
-
+	// setting the prompt text of the fields where information 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -532,6 +514,30 @@ public class Controller implements Initializable{
 		bookType.setPromptText("ex Service");
 		bookDate.setPromptText("dd/mm/year");
 		custEmail.setPromptText("johnsmith@sample.com");
+		cMake.setPromptText("ex honda");
+		cModel.setPromptText("ex accord");
+		cYear.setPromptText("ex 1991");
+		cEngineSize.setPromptText("Ex 4.0L");
+		cType.setPromptText("ex sedan,suv ");
+		cKilometers.setPromptText("ex1000000");
+		txtBookId.setPromptText("ex1");
+		txtBookType.setPromptText("ex service or sales");
+		txtServiceId.setPromptText("ex000");
+		txtServicePlate.setPromptText("000-0000");
+		cMake2.setPromptText("ex honda");
+		cModel2.setPromptText("ex accord");
+		cYear2.setPromptText("ex 1991");
+		cEngineSize2.setPromptText("Ex 4.0L");
+		cType2.setPromptText("ex sedan,suv ");
+		cKilometers2.setPromptText("ex1000000");
+		cMake3.setPromptText("ex honda");
+		cModel3.setPromptText("ex accord");
+		cYear3.setPromptText("ex 1991");
+		cEngineSize3.setPromptText("Ex 4.0L");
+		cType3.setPromptText("ex sedan,suv ");
+		cCondition.setPromptText("ex used or new");
+		cCondition2.setPromptText("ex user or new");
+
 
 
 		//Read the x variable from var.txt
@@ -551,9 +557,6 @@ public class Controller implements Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		// using the combobox another way
-		//https://o7planning.org/en/11081/javafx-combobox-tutorial
-
 
 		try {
 
