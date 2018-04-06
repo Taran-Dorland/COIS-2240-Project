@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -21,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
         <columnConstraints>
@@ -56,7 +49,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="Make" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cMake" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="125.0" top="-28.0" />
                            </VBox.margin>
@@ -69,7 +62,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="Year" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cYear" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="125.0" top="-27.0" />
                            </VBox.margin>
@@ -82,7 +75,7 @@
                               <Insets left="275.0" top="-70.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="Model" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cModel" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="390.0" top="-25.0" />
                            </VBox.margin>
@@ -95,7 +88,7 @@
                               <Insets left="275.0" top="18.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="Enginesize" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cEngineSize" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="390.0" top="-25.0" />
                            </VBox.margin>
@@ -230,7 +223,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="Type" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cType" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="125.0" top="-28.0" />
                            </VBox.margin>
@@ -243,7 +236,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="condition" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cCondition" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="125.0" top="-27.0" />
                            </VBox.margin>
@@ -261,7 +254,7 @@
                               <Insets left="390.0" top="-25.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="Kilometers" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cKilometers" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="390.0" top="-25.0" />
                            </VBox.margin>
@@ -292,8 +285,24 @@
                   <Insets top="220.0" />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#save" prefHeight="71.0" prefWidth="200.0" text="Purchase" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#Payment" prefHeight="71.0" prefWidth="200.0" text="Payment" GridPane.rowIndex="4">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets left="275.0" top="1.0" />
+               </GridPane.margin></Button>
             <Button fx:id="btnExit" layoutX="10.0" layoutY="479.0" mnemonicParsing="false" onAction="#Exits" prefHeight="71.0" prefWidth="200.0" text="Exit" GridPane.rowIndex="4" />
+            <VBox prefHeight="144.0" prefWidth="432.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="110.0" style="-fx-background-color: GRAY;" text="Price" textAlignment="CENTER" textFill="#f8f8f8">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="cPrice" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="141.0" />
+               </children>
+            </VBox>
          </children>
       </GridPane>
    </children>

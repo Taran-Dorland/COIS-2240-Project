@@ -12,7 +12,7 @@ package application;
 
 
 
-public class CarSales {
+public class CarSales  {
 
 
 
