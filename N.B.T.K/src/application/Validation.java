@@ -11,12 +11,12 @@ public class Validation extends Controller {
 
 	public boolean isPhoneNumberValid(String bookingPhone) {
 		char[] UserId = bookingPhone.toCharArray();
-		
+
 		// check if user id is of length 10
 		if (UserId.length != 10) {
 			return false;
 		}
-		
+
 		for (char i : UserId) {
 			if (!(i >= 48 && i <= 57)) { // Check if all the character in user name are nnumericals.
 				return false;
@@ -35,7 +35,7 @@ public class Validation extends Controller {
 
 		return true;
 	}
-	
+
 	public boolean isNotEmpty(String any) {
 		char[] charArray = any.toCharArray();
 
