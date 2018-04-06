@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -22,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
         <columnConstraints>
@@ -86,14 +79,8 @@
             <ImageView fx:id="ivOne" fitHeight="250.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                <image>
                   <Image url="@../../toyota_c.png" />
-<<<<<<< HEAD
                </image></ImageView>
             <ImageView fx:id="ivTwo" fitHeight="250.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
-=======
-               </image>
-            </ImageView>
-            <ImageView fx:id="ivTwo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
->>>>>>> 4326da23d7de1340ca2c6bb8a9fe563be2ecdabb
                <image>
                   <Image url="@../../honda_c.png" />
                </image>
