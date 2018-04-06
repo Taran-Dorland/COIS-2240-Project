@@ -55,6 +55,7 @@ public class Main extends Application{
 			// setting the scene to start
 			primaryStage.setScene(scene);
 			// scene displays when running
+			primaryStage.setResizable(false);
 			primaryStage.show();
 
 		} catch(Exception e) {

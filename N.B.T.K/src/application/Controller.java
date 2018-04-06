@@ -41,6 +41,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -50,7 +51,7 @@ import javafx.scene.text.TextFlow;
 
 public class Controller implements Initializable{
 
-	ObservableList<String> uidLoglist = FXCollections.observableArrayList("user1","manager","training");
+
 	private int x = 1;
 	private Connection dbConn = null;
 	// instantiation needs to be done in order to set the prompting texts and being able to use them
@@ -64,7 +65,8 @@ public class Controller implements Initializable{
 	@FXML
 	public AnchorPane rootPane;
 	@FXML
-	public ComboBox  uid;
+	public ComboBox <userid>  uid;
+	public ObservableList<userid> uidLoglist = FXCollections.observableArrayList();
 	@FXML
 	public Button btnExit;
 	@FXML
@@ -73,12 +75,21 @@ public class Controller implements Initializable{
 	public RadioButton rBtnOne = new RadioButton(), rBtnTwo = new RadioButton();
 	@FXML
 	public ToggleGroup tg = new ToggleGroup();
+	private TextInputControl outputTextArea;
 	@FXML
 	public void initialize() {
+
+		uidLoglist.add(new userid ("User1"));
+		uid.setItems(uidLoglist);
 
 
 	}
 
+	@FXML
+	private void handleComboBoxAction() {
+	  userid selectedPerson = uid.getSelectionModel().getSelectedItem();
+	  outputTextArea.appendText("uidAction (selected: " + selectedPerson + ")\n");
+	}
 
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//SALES BUTTON Functionality ------------ These comments apply to the others
@@ -98,6 +109,7 @@ public class Controller implements Initializable{
 			stage.setTitle("Sales");
 			// set scene
 			stage.setScene(scene);
+			stage.setResizable(false);
 			// stage to show
 			stage.show();
 			// catch exception
@@ -176,6 +188,8 @@ public class Controller implements Initializable{
 		}
 	}
 
+
+
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//PurchaseButton functionality
 	public void Purchase(ActionEvent e){
@@ -186,12 +200,33 @@ public class Controller implements Initializable{
 			Stage stage = new Stage();
 			stage.setTitle("CarPurchase");
 			stage.setScene(scene);
+			stage.setResizable(false);
 			stage.show();
 
 
 		} catch(Exception e1) {
 			System.out.println(e1.getMessage());
 		}
+	}
+
+	public void Payment(ActionEvent e){
+
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(getClass().getResource("payement.fxml"));
+
+			Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
+			Stage stage = new Stage();
+			stage.setTitle("ServiceWindow");
+			stage.setScene(scene);
+			stage.setResizable(false);
+			
+			stage.show();
+
+
+
+		} catch(Exception e1) { }
+
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------------------
@@ -207,7 +242,7 @@ public class Controller implements Initializable{
 			stage.setTitle("CarPurchase");
 
 			stage.setScene(scene);
-
+			stage.setResizable(false);
 			stage.show();
 
 		} catch(Exception e1) {
@@ -226,6 +261,7 @@ public class Controller implements Initializable{
 			Stage stage = new Stage();
 			stage.setTitle("ServiceWindow");
 			stage.setScene(scene);
+			stage.setResizable(false);
 			stage.show();
 
 		} catch(Exception e1) { }
@@ -242,6 +278,7 @@ public class Controller implements Initializable{
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setTitle("addcar");
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.showAndWait();
 	}
 
@@ -256,6 +293,7 @@ public class Controller implements Initializable{
 			Stage stage = new Stage();
 			stage.setTitle("ServiceWindow");
 			stage.setScene(scene);
+			stage.setResizable(false);
 			stage.show();
 
 		} catch(Exception e1) { }
@@ -277,6 +315,7 @@ public class Controller implements Initializable{
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setTitle("addbooking");
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.showAndWait();
 	}
 
@@ -293,6 +332,7 @@ public class Controller implements Initializable{
 			Stage stage = new Stage();
 			stage.setTitle("ServiceWindow");
 			stage.setScene(scene);
+			stage.setResizable(false);
 			stage.show();
 
 
