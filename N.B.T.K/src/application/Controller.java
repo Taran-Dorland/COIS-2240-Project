@@ -52,7 +52,7 @@ import javafx.scene.text.TextFlow;
 
 public class Controller implements Initializable{
 
-	private int x = 1, bookingId = 1;
+	private int x = 1, bookingId = 1, serviceId = 1;
 	private Connection dbConn = null;
 
 	String newLine = System.getProperty("line.separator");
@@ -65,6 +65,10 @@ public class Controller implements Initializable{
 	public TextField cMake = new TextField(), cModel = new TextField(), cYear = new TextField(), cEngineSize = new TextField(), cType = new TextField(), cKilometers = new TextField(), cCondition = new TextField(), cPrice = new TextField();
 	@FXML
 	public TextField cMake2 = new TextField(), cModel2 = new TextField(), cYear2 = new TextField(), cEngineSize2 = new TextField(), cType2 = new TextField(), cKilometers2 = new TextField(), cCondition2 = new TextField();
+	@FXML
+	public TextField cMake3 = new TextField(), cModel3 = new TextField(), cYear3 = new TextField(), cEngineSize3 = new TextField(), cType3 = new TextField();
+	@FXML
+	public TextField cPlateNum = new TextField(), cServiceId = new TextField();
 	@FXML
 	public TextFlow textFlow;
 	@FXML
@@ -81,11 +85,9 @@ public class Controller implements Initializable{
 	@FXML
 	public ToggleGroup tg = new ToggleGroup();
 	@FXML
-	public TextArea ta = new TextArea();
+	public TextArea ta = new TextArea(), ta2 = new TextArea();
 	@FXML
-	public TextField txtBookId = new TextField(), txtBookType = new TextField();
-
-
+	public TextField txtBookId = new TextField(), txtBookType = new TextField(), txtServiceId = new TextField(), txtServicePlate = new TextField();
 
 	private TextInputControl outputTextArea;
 
@@ -96,8 +98,6 @@ public class Controller implements Initializable{
 
 		uidLoglist.add(new userid ("User1"));
 		uid.setItems(uidLoglist);
-
-
 	}
 
 	@FXML
@@ -196,22 +196,21 @@ public class Controller implements Initializable{
 
 	}
 
-	//TEST
 	//--------------------------------------------------------------------------------------------------------------------------------
 	//Remove booking from database
 	public void removeBookingFromDB(ActionEvent event) {
 
 		int idHolder = Integer.parseInt(txtBookId.getText());
 		System.out.println(idHolder);
-		
+
 		try {
 			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
 			String sql = "DELETE FROM booking WHERE id = ?;";
 			PreparedStatement ps = dbConn.prepareStatement(sql);
 			ps = dbConn.prepareStatement(sql);
-			
+
 			ps.setInt(1, idHolder);
-			
+
 			ps.executeUpdate();
 			ps.close();
 			dbConn.close();
@@ -222,7 +221,65 @@ public class Controller implements Initializable{
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
+	}
 
+	//
+	//TEST
+	//--------------------------------------------------------------------------------------------------------------------------------
+	//Add service to database
+	public void addService(ActionEvent event) {
+
+		try {
+			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
+			String sql = "INSERT INTO service(id, make, model, year, engineSize, type, plateNumber) VALUES(?,?,?,?,?,?,?)";
+			PreparedStatement ps = dbConn.prepareStatement(sql);
+			ps = dbConn.prepareStatement(sql);
+
+			ps.setInt(1, Integer.parseInt(cServiceId.getText()));
+			ps.setString(2, cMake3.getText());
+			ps.setString(3, cModel3.getText());
+			ps.setString(4, cYear3.getText());
+			ps.setString(5, cEngineSize3.getText());
+			ps.setString(6, cType3.getText());
+			ps.setString(7, cPlateNum.getText());
+
+			ps.executeUpdate();
+			ps.close();
+			dbConn.close();
+
+			System.out.println("Successfully written to database.");
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+	}
+
+	//--------------------------------------------------------------------------------------------------------------------------------
+	//Remove booking from database
+	public void removeServiceFromDB(ActionEvent event) {
+
+		int idHolder = Integer.parseInt(txtServiceId.getText());
+		System.out.println(idHolder);
+
+		try {
+			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
+			String sql = "DELETE FROM service WHERE id = ?;";
+			PreparedStatement ps = dbConn.prepareStatement(sql);
+			ps = dbConn.prepareStatement(sql);
+
+			ps.setInt(1, idHolder);
+
+			ps.executeUpdate();
+			ps.close();
+			dbConn.close();
+
+			System.out.println("Successfully deleted from database.");
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------------------
@@ -563,10 +620,9 @@ public class Controller implements Initializable{
 			stmt.close();
 			dbConn.close();
 
-		} catch (Exception e) {
+		} catch (Exception e) { }
 
-		}
-
+		//Load booking id's into textarea for remove booking
 		try {
 			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
 			Statement stmt = null;
@@ -587,9 +643,52 @@ public class Controller implements Initializable{
 			stmt.close();
 			dbConn.close();
 
-		} catch (Exception e) {
+		} catch (Exception e) { }
 
-		}
+		//Get latest service id, add one to it
+		try {
+			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
+			Statement stmt = null;
+			stmt = dbConn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id FROM service;");
+
+			//Get latest booking id, add one to it
+			while (rs.next()) {
+				serviceId = rs.getInt("id");
+				serviceId++;
+			}
+
+			cServiceId.setText(Integer.toString(serviceId));
+
+			rs.close();
+			stmt.close();
+			dbConn.close();
+
+		} catch (Exception e) { }
+
+		//Load service id's into textarea for remove service
+		try {
+			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
+			Statement stmt = null;
+			stmt = dbConn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id,plateNumber FROM SERVICE;");
+
+			//Get all booking id's and type's and output them to text area
+			while (rs.next()) {
+
+				String id = Integer.toString(rs.getInt("id"));
+				String plateNum = rs.getString("plateNumber");
+
+				ta2.setText(ta2.getText() + "ID: " + id + "     " + " Type: " + plateNum);
+				ta2.setText(ta2.getText() + newLine);
+			}
+
+			rs.close();
+			stmt.close();
+			dbConn.close();
+
+		} catch (Exception e) { }
+
 	}
 
 }
