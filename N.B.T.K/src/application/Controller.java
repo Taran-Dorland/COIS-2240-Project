@@ -40,6 +40,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.ToggleGroup;
@@ -51,15 +52,19 @@ import javafx.scene.text.TextFlow;
 
 public class Controller implements Initializable{
 
-
-	private int x = 1;
+	private int x = 1, bookingId = 1;
 	private Connection dbConn = null;
+
+	String newLine = System.getProperty("line.separator");
+
 	// instantiation needs to be done in order to set the prompting texts and being able to use them
 	@FXML
 	public TextField lName = new TextField(),fName = new TextField(), pNumber = new TextField(), stNumber = new TextField(), Cname = new TextField(), pCode= new TextField(), pRovince= new TextField(), custId= new TextField(), bookType= new TextField(),
 	bookDate = new TextField(),custEmail = new TextField();
 	@FXML
 	public TextField cMake = new TextField(), cModel = new TextField(), cYear = new TextField(), cEngineSize = new TextField(), cType = new TextField(), cKilometers = new TextField(), cCondition = new TextField(), cPrice = new TextField();
+	@FXML
+	public TextField cMake2 = new TextField(), cModel2 = new TextField(), cYear2 = new TextField(), cEngineSize2 = new TextField(), cType2 = new TextField(), cKilometers2 = new TextField(), cCondition2 = new TextField();
 	@FXML
 	public TextFlow textFlow;
 	@FXML
@@ -75,7 +80,17 @@ public class Controller implements Initializable{
 	public RadioButton rBtnOne = new RadioButton(), rBtnTwo = new RadioButton();
 	@FXML
 	public ToggleGroup tg = new ToggleGroup();
+	@FXML
+	public TextArea ta = new TextArea();
+	@FXML
+	public TextField txtBookId = new TextField(), txtBookType = new TextField();
+
+
+
 	private TextInputControl outputTextArea;
+
+
+
 	@FXML
 	public void initialize() {
 
@@ -87,8 +102,8 @@ public class Controller implements Initializable{
 
 	@FXML
 	private void handleComboBoxAction() {
-	  userid selectedPerson = uid.getSelectionModel().getSelectedItem();
-	  outputTextArea.appendText("uidAction (selected: " + selectedPerson + ")\n");
+		userid selectedPerson = uid.getSelectionModel().getSelectedItem();
+		outputTextArea.appendText("uidAction (selected: " + selectedPerson + ")\n");
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------------------
@@ -151,6 +166,63 @@ public class Controller implements Initializable{
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
+
+		//Add car information for booking with same id as customer information
+		try {
+			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
+			String sql = "INSERT INTO carBooking(id, make, model, year, engineSize, type, kilometers, condition) VALUES(?,?,?,?,?,?,?,?)";
+			PreparedStatement ps = dbConn.prepareStatement(sql);
+			ps = dbConn.prepareStatement(sql);
+
+			ps.setInt(1, bookingId);
+			ps.setString(2, cMake2.getText());
+			ps.setString(3, cModel2.getText());
+			ps.setString(4, cYear.getText());
+			ps.setString(5, cEngineSize2.getText());
+			ps.setString(6, cType2.getText());
+			ps.setInt(7, Integer.parseInt(cKilometers2.getText()));
+			ps.setString(8, cCondition2.getText());
+
+			ps.executeUpdate();
+			ps.close();
+			dbConn.close();
+
+			System.out.println("Successfully written to database.");
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+
+	}
+
+	//TEST
+	//--------------------------------------------------------------------------------------------------------------------------------
+	//Remove booking from database
+	public void removeBookingFromDB(ActionEvent event) {
+
+		int idHolder = Integer.parseInt(txtBookId.getText());
+		System.out.println(idHolder);
+		
+		try {
+			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
+			String sql = "DELETE FROM booking WHERE id = ?;";
+			PreparedStatement ps = dbConn.prepareStatement(sql);
+			ps = dbConn.prepareStatement(sql);
+			
+			ps.setInt(1, idHolder);
+			
+			ps.executeUpdate();
+			ps.close();
+			dbConn.close();
+
+			System.out.println("Successfully deleted from database.");
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------------------
@@ -220,7 +292,7 @@ public class Controller implements Initializable{
 			stage.setTitle("ServiceWindow");
 			stage.setScene(scene);
 			stage.setResizable(false);
-			
+
 			stage.show();
 
 
@@ -407,22 +479,22 @@ public class Controller implements Initializable{
 
 		//Read the x variable from var.txt
 		try {
-            FileReader reader = new FileReader("var.txt");
-            BufferedReader bufferedReader = new BufferedReader(reader);
+			FileReader reader = new FileReader("var.txt");
+			BufferedReader bufferedReader = new BufferedReader(reader);
 
-            String varHolder;
+			String varHolder;
 
-            while ((varHolder = bufferedReader.readLine()) != null) {
-                System.out.println(varHolder);
-                x = Integer.parseInt(varHolder);
+			while ((varHolder = bufferedReader.readLine()) != null) {
+				System.out.println(varHolder);
+				x = Integer.parseInt(varHolder);
 
-            }
-            reader.close();
+			}
+			reader.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-// using the combobox another way
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// using the combobox another way
 		//https://o7planning.org/en/11081/javafx-combobox-tutorial
 
 
@@ -471,5 +543,54 @@ public class Controller implements Initializable{
 		} catch (Exception e) {
 
 		}
+
+		//Get latest booking id, add one to it to create a new id
+		try {
+			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
+			Statement stmt = null;
+			stmt = dbConn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id FROM BOOKING;");
+
+			//Get latest booking id, add one to it
+			while (rs.next()) {
+				bookingId = rs.getInt("id");
+				bookingId++;
+			}
+
+			custId.setText(Integer.toString(bookingId));
+
+			rs.close();
+			stmt.close();
+			dbConn.close();
+
+		} catch (Exception e) {
+
+		}
+
+		try {
+			dbConn = DriverManager.getConnection("jdbc:sqlite:testdb.db");
+			Statement stmt = null;
+			stmt = dbConn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id,type FROM BOOKING;");
+
+			//Get all booking id's and type's and output them to text area
+			while (rs.next()) {
+
+				String id = Integer.toString(rs.getInt("id"));
+				String type = rs.getString("type");
+
+				ta.setText(ta.getText() + "ID: " + id + "     " + " Type: " + type);
+				ta.setText(ta.getText() + newLine);
+			}
+
+			rs.close();
+			stmt.close();
+			dbConn.close();
+
+		} catch (Exception e) {
+
+		}
 	}
+
 }
+

@@ -55,7 +55,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cMake2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="125.0" top="-28.0" />
                            </VBox.margin>
@@ -68,7 +68,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cYear2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="125.0" top="-27.0" />
                            </VBox.margin>
@@ -81,7 +81,7 @@
                               <Insets left="275.0" top="-70.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cModel2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="390.0" top="-25.0" />
                            </VBox.margin>
@@ -94,7 +94,7 @@
                               <Insets left="275.0" top="18.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cEngineSize2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="390.0" top="-25.0" />
                            </VBox.margin>
@@ -229,7 +229,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cType2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="125.0" top="-28.0" />
                            </VBox.margin>
@@ -242,7 +242,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cCondition2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="125.0" top="-27.0" />
                            </VBox.margin>
@@ -260,7 +260,7 @@
                               <Insets left="390.0" top="-25.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                        <TextField fx:id="cKilometers2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                            <VBox.margin>
                               <Insets left="390.0" top="-25.0" />
                            </VBox.margin>
@@ -301,7 +301,7 @@
                         <Insets left="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="custId" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
+                  <TextField fx:id="custId" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="141.0">
                      <VBox.margin>
                         <Insets left="125.0" top="-28.0" />
                      </VBox.margin>
