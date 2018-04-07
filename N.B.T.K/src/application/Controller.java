@@ -797,7 +797,7 @@ public class Controller implements Initializable{
 			int carKm = rs.getInt("km");
 			String carCondition = rs.getString("condition");
 			int carPrice = rs.getInt("price");
-			String carImg = rs.getString("picture");
+			//String carImg = rs.getString("picture");
 
 			System.out.println(carId + " " + carMake + " " + carModel);
 
